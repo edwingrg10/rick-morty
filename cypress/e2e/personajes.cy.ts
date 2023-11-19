@@ -18,12 +18,14 @@ describe('Personajes', () => {
     cy.get('[data-cy="filtrar-personajes"]').click()
     cy.wait(2000)
     cy.get('[data-cy="opcion-Nombre"]').click()
+    cy.get('body').click()
     cy.get('[data-cy=name]').type('Rick Sanchez')
     cy.get('[data-cy="filtrar"]').click()
     cy.wait(3000)
     cy.get('[data-cy="limpiar-filtros"]').click()
     cy.get('[data-cy="filtrar-personajes"]').click()
     cy.get('[data-cy="opcion-Nombre"]').click()
+    cy.get('body').click()
   });
 
   it('Buscar personajes', () => {

@@ -2,7 +2,8 @@
   <span class="title">Lista de personajes</span>
   <div class="header">
     <div class="sub-header" style="width: 10%;">
-      <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Filtrar personajes">
+      <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Filtrar personajes"
+        [attr.data-cy]="'filtrar-personajes'">
         <img style="width: 27px;height: 27px;margin-right: 10px;" src="assets/images/icon_filtro_personalizado.svg">
       </button>
       <span [matMenuTriggerFor]="menu"
@@ -12,22 +13,25 @@
       <mat-menu #menu="matMenu">
         <form [formGroup]="filterForm" style="display: flex; flex-direction: column;">
           <button mat-menu-item disabled>Filtrar personajes</button>
-          <mat-checkbox *ngFor="let option of filterOptions" color="primary" [formControlName]="option.key"
-            (click)="getFilterOptions()">
+          <mat-checkbox *ngFor="let option of filterOptions; let i = index" color="primary"
+            [formControlName]="option.key" (click)="getFilterOptions()" [attr.data-cy]="'opcion-' + option.label">
             {{ option.label }}
           </mat-checkbox>
         </form>
       </mat-menu>
     </div>
-    <input class="nosubmit" fxFlex="90" (keyup)="applyFilter($event)" type="search" placeholder="Buscar personajes">
+    <input class="nosubmit" fxFlex="90" (keyup)="applyFilter($event)" type="search" placeholder="Buscar personajes"  [attr.data-cy]="'buscar-personajes'">
   </div>
   <div style="margin-top: 10px;" *ngIf="filterOptionsSelected.length>0">
-    <app-filter [filterOptions]="filterOptionsSelected" (getCharactersFiltered)="getCharactersFiltered($event)"></app-filter>
+    <app-filter [filterOptions]="filterOptionsSelected"
+      (getCharactersFiltered)="getCharactersFiltered($event)"></app-filter>
   </div>
-  <p style="display: flex; flex-direction: column; align-items: center;" *ngIf="characters.length==0">No se encontraron resultados</p>
-  <cdk-virtual-scroll-viewport [ngClass]="filterOptionsSelected.length>0 ? 'filtered' : 'unfiltered'" id="style-1" itemSize="50" minBufferPx="540" maxBufferPx="540" style="margin-top: 10px;">
+  <p style="display: flex; flex-direction: column; align-items: center;" *ngIf="characters.length==0">No se encontraron
+    resultados</p>
+  <cdk-virtual-scroll-viewport [ngClass]="filterOptionsSelected.length>0 ? 'filtered' : 'unfiltered'" id="style-1"
+    itemSize="50" minBufferPx="540" maxBufferPx="540" style="margin-top: 10px;">
     <div class="card-data">
-      <mat-card class="card" *cdkVirtualFor="let character of characters">
+      <mat-card class="card" *cdkVirtualFor="let character of characters; let i = index">
         <div class="card-container">
           <div class="card-detail">
             <div class="card-header">
@@ -46,7 +50,7 @@
               style="font-size: 14px;font-weight: 400;line-height: 17px;letter-spacing: 0em;text-align: left;color: #535353;">
               {{character.created | date :
               'dd-MM-yyyy'}}</p>
-          </div> 
+          </div>
           <div style="display: flex; flex-direction: row; align-items: flex-start;">
             <span style="font-weight: 600;margin-right: 10px;">Género:</span>
             <p
@@ -62,7 +66,7 @@
           </div>
         </div>
         <div style="height: 40px; background-color: #636363; border-radius: 0px 0px 20px 20px; position: relative;">
-          <button mat-button (click)="seeDetail(character)"
+          <button mat-button (click)="seeDetail(character)" [attr.data-cy]="'ver-detalle-'+i"
             style="width: 100%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);  font-size: 14px; font-weight: 400; color: white;">
             Ver detalle
           </button>

@@ -4,7 +4,7 @@
       <div *ngSwitchCase="'text'" class="item">
         <label class="question-label">{{ field.label }}</label>
         <mat-form-field>
-          <input matInput [formControlName]="field.key" placeholder="{{ field.label }}">
+          <input matInput [formControlName]="field.key" placeholder="{{ field.label }}" [attr.data-cy]="field.key">
         </mat-form-field>
       </div>
       <div *ngSwitchCase="'select'" class="item">
@@ -17,7 +17,8 @@
       </div>
     </ng-container>
   </div>
-  <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="searchCharacters()" style="margin-right: 10px;">Filtrar</button>
-  <button mat-raised-button color="primary" *ngIf="filtered" (click)="cleanFilters()">Limpiar filtros</button>
+  <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="searchCharacters()"
+    style="margin-right: 10px;" [attr.data-cy]="'filtrar'">Filtrar</button>
+  <button mat-raised-button color="primary" *ngIf="filtered" (click)="cleanFilters()"  [attr.data-cy]="'limpiar-filtros'">Limpiar filtros</button>
 </form>
 <mat-spinner *ngIf="isLoading"></mat-spinner>

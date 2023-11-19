@@ -10,7 +10,6 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "esModuleInterop": true,
-    "sourceMap": true,
     "declaration": false,
     "experimentalDecorators": true,
     "moduleResolution": "node",
@@ -23,6 +22,7 @@
       "dom"
     ]
   },
+  "include": ["**/*.ts","./node_modules/cypress", "cypress/**/*.js"],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,

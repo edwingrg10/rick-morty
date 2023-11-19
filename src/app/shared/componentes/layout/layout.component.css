@@ -37,7 +37,7 @@ table {
 }
 
 .profile-menu {
-    text-align: center;
+    text-align: center; 
     width: 200px;
     .img-avatar {
         width: 80px !important;

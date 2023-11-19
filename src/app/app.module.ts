@@ -7,6 +7,7 @@ import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PageNotFoundComponent } from './shared/componentes/page-not-found/page-not-found.component';
 import { CharacterService } from './characters/services/character.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
@@ -14,6 +15,7 @@ import { CharacterService } from './characters/services/character.service';
         HttpClientModule,
         BrowserAnimationsModule,
         AppRoutingModule,
+        ReactiveFormsModule,
         SharedModule.forRoot()
     ],
     declarations: [

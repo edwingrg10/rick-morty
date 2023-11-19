@@ -54,9 +54,9 @@
       </mat-nav-list>
     </mat-sidenav>
 
-    <mat-sidenav-content style="background-color: #eeeeee !important; padding: 25px;">
+    <mat-sidenav-content style="background-color: #eeeeee !important; padding: 10px 25px 25px 25px;">
       <router-outlet>
-        <app-home></app-home>
+        <app-home [message]="message"></app-home>
       </router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>

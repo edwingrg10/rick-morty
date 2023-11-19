@@ -1,4 +1,72 @@
-<p>
-  characters works!
-</p>
-<button mat-raised-button color="primary">Primary</button>
+<div>
+  <span class="title">Lista de personajes</span>
+  <div class="header">
+    <div class="sub-header" style="width: 10%;">
+      <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Filtrar personajes">
+        <img style="width: 27px;height: 27px;margin-right: 10px;" src="assets/images/icon_filtro_personalizado.svg">
+      </button>
+      <span [matMenuTriggerFor]="menu"
+        style="font-size: 16px;font-weight: 300;line-height: 20px;letter-spacing: 0em;text-align: left;cursor: pointer;"
+        matTooltip="Filtrar personajes">Filtrar
+        por</span>
+      <mat-menu #menu="matMenu">
+        <form [formGroup]="filterForm" style="display: flex; flex-direction: column;">
+          <button mat-menu-item disabled>Filtrar personajes</button>
+          <mat-checkbox *ngFor="let option of filterOptions" color="primary" formControlName="filter">
+            {{ option.label }}
+          </mat-checkbox>
+        </form>
+      </mat-menu>
+    </div>
+    <input class="nosubmit" fxFlex="90" (keyup)="applyFilter($event)" type="search" placeholder="Buscar personajes">
+  </div>
+  <div>
+    <button mat-raised-button color="primary">Filtrar</button>
+  </div>
+  <cdk-virtual-scroll-viewport id="style-1" itemSize="50" minBufferPx="540" maxBufferPx="540" style="margin-top: 10px;">
+    <div class="card-data">
+      <mat-card class="card" *cdkVirtualFor="let character of characters">
+        <div class="card-container">
+          <div class="card-detail">
+            <div class="card-header">
+              <img style="width: 50px;height: 50px;color: #B3B3B3;cursor: pointer;margin-right: 10px;"
+                matTooltip="Registrar productor" [src]="character.image">
+              <p style="font-size: 16px;font-weight: 900;line-height: 20px;letter-spacing: 0em;text-align: left;">
+                {{character.name}}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; padding: 0 16px 0 16px;height: 90px;width: 100%">
+          <div style="display: flex; flex-direction: row; align-items: flex-start;">
+            <span style="font-weight: 600;margin-right: 10px;">Fecha de creación:</span>
+            <p
+              style="font-size: 14px;font-weight: 400;line-height: 17px;letter-spacing: 0em;text-align: left;color: #535353;">
+              {{character.created | date :
+              'dd-MM-yyyy'}}</p>
+          </div>
+          <div style="display: flex; flex-direction: row; align-items: flex-start;">
+            <span style="font-weight: 600;margin-right: 10px;">Género:</span>
+            <p
+              style="font-size: 14px;font-weight: 400;line-height: 17px;letter-spacing: 0em;text-align: left;color: #535353;">
+              {{character.gender == 'Male' ? 'Masculino' : character.gender == 'Female' ? 'Femenino' : 'No específica'
+              }}</p>
+          </div>
+          <div style="display: flex; flex-direction: row; align-items: flex-start;">
+            <span style="font-weight: 600;margin-right: 10px;">Estado:</span>
+            <p
+              style="font-size: 14px;font-weight: 400;line-height: 17px;letter-spacing: 0em;text-align: left;color: #535353;">
+              {{character.status == 'Alive' ? 'Vivo' : character.gender == 'Dead' ? 'Muerto' : 'No específica' }}</p>
+          </div>
+        </div>
+        <div style="height: 40px; background-color: #636363; border-radius: 0px 0px 20px 20px; position: relative;">
+          <button mat-button (click)="seeDetail(character)"
+            style="width: 100%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);  font-size: 14px; font-weight: 400; color: white;">
+            Ver detalle
+          </button>
+        </div>
+      </mat-card>
+    </div>
+  </cdk-virtual-scroll-viewport>
+</div>
+<mat-spinner *ngIf="isLoading"></mat-spinner>

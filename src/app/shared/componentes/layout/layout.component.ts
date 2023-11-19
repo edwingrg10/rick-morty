@@ -25,6 +25,7 @@ export class LayoutComponent implements OnInit {
       ]
     }
   ];
+  message: string = 'Bienvenido a la serie Rick and Morty';
   mobileQuery: MediaQueryList;
   constructor(
     public router: Router,

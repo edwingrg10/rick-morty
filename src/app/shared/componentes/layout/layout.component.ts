@@ -1,13 +1,13 @@
+import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
-  selector: 'app-characters-layout',
-  templateUrl: './characters-layout.component.html',
-  styleUrls: ['./characters-layout.component.css']
+  selector: 'app-layout',
+  templateUrl: './layout.component.html',
+  styleUrls: ['./layout.component.css']
 })
-export class CharactersLayoutComponent implements OnInit {
+export class LayoutComponent implements OnInit {
   menu: any[] = [
     {
       displayName: 'Inicio',
@@ -29,7 +29,7 @@ export class CharactersLayoutComponent implements OnInit {
   constructor(
     public router: Router,
     changeDetectorRef: ChangeDetectorRef,
-    media: MediaMatcher,
+    media: MediaMatcher
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -37,11 +37,6 @@ export class CharactersLayoutComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("router", this.router.url)
-  }
-
-  onMenuItemSelected(item: any) {
-
   }
 
   private _mobileQueryListener: () => void;

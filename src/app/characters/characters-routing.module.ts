@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CharactersComponent } from './characters-list/characters.component';
 import { DetailCharacterComponent } from './characters-detail/detail-character.component';
-import { CharactersLayoutComponent } from './characters-layout/characters-layout.component';
+import { LayoutComponent } from '../shared/componentes/layout/layout.component';
 
 const routes: Routes = [
     {
-        path: '', component: CharactersLayoutComponent, children: [
+        path: '', component: LayoutComponent, children: [
             {
                 path: 'list', component: CharactersComponent
             },

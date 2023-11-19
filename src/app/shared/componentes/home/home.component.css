@@ -1,0 +1,6 @@
+.container {
+    display: flex; /* Activa el modelo de diseño flexbox */
+    flex-direction: row; /* Establece la dirección de los elementos secundarios en fila */
+    justify-content: center; /* Centra los elementos secundarios horizontalmente */
+    align-items: center; /* Centra los elementos secundarios verticalmente */
+}

@@ -1,0 +1,70 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="primary" class="example-toolbar">
+    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+    <h1 class="example-app-name">Prueba técnica</h1>
+
+    <div class="profile-btn" [matMenuTriggerFor]="profileMenu">
+      <img src="assets/images/profile.jpg" class="img-avatar" alt="" onerror="this.src='assets/images/profile.jpg'">
+    </div>
+    <mat-menu #profileMenu="matMenu">
+      <div class="profile-menu">
+        <img src="assets/images/profile.jpg" class="img-avatar" alt="" onerror="this.src='assets/images/profile.jpg'">
+        <h4 class="bold">Juju</h4>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-menu>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56">
+      <mat-nav-list>
+        <span *ngFor="let item of menu">
+          <span *ngIf="item.children && item.children.length > 0">
+            <mat-accordion>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+                      <mat-icon>{{item.iconName}}</mat-icon>
+                      {{item.displayName}}
+                    </div>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <span *ngFor="let child of item.children">
+                  <mat-list-item [routerLink]="child.route">
+                    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+                      <mat-icon>{{child.iconName}}</mat-icon>
+                      {{child.displayName}}
+                    </div>
+                  </mat-list-item>
+                </span>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </span>
+          <span *ngIf="!item.children || item.children.length === 0">
+            <mat-list-item [routerLink]="item.route">
+              <div fxLayout="row" fxLayoutAlign="space-between center">
+                <mat-icon>{{item.iconName}}</mat-icon>
+                {{item.displayName}}
+              </div>
+            </mat-list-item>
+          </span>
+        </span>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content style="background-color: #eeeeee !important; padding: 25px;">
+      <router-outlet>
+        <div style="height: 10%;" *ngIf="router.url == '/'" fxLayout="row" fxLayoutAlign="center center">
+          <p style="font-size: 25px; font-weight: bold; align-items: center;">HOla Andrea</p>
+        </div>
+      </router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+<!-- 
+<button mat-raised-button color="primary">LAYOUT</button>
+<p>EDWIN</p> -->
+<!-- <router-outlet></router-outlet> -->

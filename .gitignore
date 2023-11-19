@@ -1,0 +1,86 @@
+# Node.js
+node_modules/
+
+# Angular
+/dist/
+/angular/
+
+# Visual Studio Code
+.vscode/
+
+# Git
+.git/
+
+# Log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency directories
+/jspm_packages/
+/bower_components/
+
+# TypeScript
+*.tsbuildinfo
+
+# IDE
+.idea/
+
+# Compiled Python files
+*.pyc
+
+# Compiled Java classes
+*.class
+
+# Compiled Ruby files
+*.rbt
+
+# Compiled C++ files
+*.out
+
+# Compiled Perl files
+*.plx
+*.par
+*.swp
+*~
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# JetBrains
+.idea/
+*.iml
+
+# Miscellaneous
+*.log
+*.bak
+*.swp
+*.tmp
+*.tmp.*
+log.txt
+
+.angular/

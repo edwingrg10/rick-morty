@@ -12,7 +12,8 @@
       <mat-menu #menu="matMenu">
         <form [formGroup]="filterForm" style="display: flex; flex-direction: column;">
           <button mat-menu-item disabled>Filtrar personajes</button>
-          <mat-checkbox *ngFor="let option of filterOptions" color="primary" formControlName="filter">
+          <mat-checkbox *ngFor="let option of filterOptions" color="primary" [formControlName]="option.key"
+            (click)="getFilterOptions()">
             {{ option.label }}
           </mat-checkbox>
         </form>
@@ -20,10 +21,10 @@
     </div>
     <input class="nosubmit" fxFlex="90" (keyup)="applyFilter($event)" type="search" placeholder="Buscar personajes">
   </div>
-  <div>
-    <button mat-raised-button color="primary">Filtrar</button>
+  <div style="margin-top: 10px;" *ngIf="filterOptionsSelected.length>0">
+    <app-filter [filterOptions]="filterOptionsSelected" (getCharactersFiltered)="getCharactersFiltered($event)"></app-filter>
   </div>
-  <cdk-virtual-scroll-viewport id="style-1" itemSize="50" minBufferPx="540" maxBufferPx="540" style="margin-top: 10px;">
+  <cdk-virtual-scroll-viewport [ngClass]="filterOptionsSelected.length>0 ? 'filtered' : 'unfiltered'" id="style-1" itemSize="50" minBufferPx="540" maxBufferPx="540" style="margin-top: 10px;">
     <div class="card-data">
       <mat-card class="card" *cdkVirtualFor="let character of characters">
         <div class="card-container">

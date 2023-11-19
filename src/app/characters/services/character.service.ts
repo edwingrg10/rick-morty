@@ -15,4 +15,8 @@ export class CharacterService {
     return this.http.get<any>(this.apiUrl + '/character');
   }
 
+  getCharactersFilter(params: string) {
+    return this.http.get<any>(this.apiUrl + '/character/?' + params);
+  }
+
 }

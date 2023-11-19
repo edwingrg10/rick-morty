@@ -12,12 +12,13 @@ export class CharactersComponent implements OnInit {
   isLoading: boolean = false;
   filterForm: FormGroup = new FormGroup({});
   filterOptions = [
-    { label: 'Nombre', key: 'name' },
-    { label: 'Genero', key: 'gender' },
-    { label: 'Especie', key: 'species' },
-    { label: 'Estado', key: 'status' },
-    { label: 'Tipo', key: 'type' }
+    { label: 'Nombre', key: 'name', type: 'text' },
+    { label: 'Genero', key: 'gender', type: 'select', options: [{ label: 'Masculino', value: 'Male' }, { label: 'Femenino', value: 'Female' }] },
+    { label: 'Especie', key: 'species', type: 'select', options: [{ label: 'Humano', value: 'Human' }, { label: 'Alien', value: 'Alien' }] },
+    { label: 'Estado', key: 'status', type: 'select', options: [{ label: 'Vivo', value: 'Alive' }, { label: 'Muerto', value: 'Dead' }, { label: 'Desconocido', value: 'unknown' }] },
+    { label: 'Tipo', key: 'type', type: 'text' }
   ];
+  filterOptionsSelected: any = []
   constructor(
     private characterService: CharacterService,
     private fb: FormBuilder
@@ -29,9 +30,11 @@ export class CharactersComponent implements OnInit {
   }
 
   createForm() {
-    this.filterForm = this.fb.group({
-      filter: ['', Validators.required]
+    const formControls: any = {};
+    this.filterOptions.forEach(option => {
+      formControls[option.key] = this.fb.control(false);
     });
+    this.filterForm = this.fb.group(formControls);
   }
 
   getCharacters() {
@@ -41,20 +44,21 @@ export class CharactersComponent implements OnInit {
       this.isLoading = false;
     }, error => {
       this.isLoading = false;
-    })
-  }
-
-  applySelectFilter(): void {
-    // Lógica para aplicar el filtro según los valores seleccionados
-    const selectedValues = this.filterOptions
-      .filter((option) => this.filterForm.get(option.key)?.value)
-      .map((option) => option.key);
-
-    console.log('Filtrar por:', selectedValues);
+    });
   }
 
   applyFilter(filterValue: any) {
     filterValue = filterValue.trim().toLowerCase();
+  }
+
+  getFilterOptions() {
+    this.filterOptionsSelected = this.filterOptions
+      .filter(option => this.filterForm.get(option.key)?.value)
+      .map(option => option);
+  }
+
+  getCharactersFiltered(characters: any) {
+    this.characters = characters;
   }
 
   seeDetail(character: any) {

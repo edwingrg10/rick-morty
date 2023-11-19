@@ -60,16 +60,29 @@ input.nosubmit:focus {
     background-color: #ffffff;
 }
 
+
+
 @media only screen and (min-width: 960px) {
-    cdk-virtual-scroll-viewport {
-        min-height: calc(100vh - 205px);
+    .unfiltered {
+        min-height: calc(100vh - 200px);
+        max-height: calc(100vh - 300px);
+        width: 100%;
+    }
+    
+    .filtered {
+        min-height: calc(100vh - 300px);
         max-height: calc(100vh - 300px);
         width: 100%;
     }
 }
 
 @media only screen and (max-width: 960px) {
-    cdk-virtual-scroll-viewport {
+    .unfiltered {
+        min-height: 130vw;
+        max-height: 130vw;
+        width: 100%;
+    }
+    .unfiltered {
         min-height: 130vw;
         max-height: 130vw;
         width: 100%;

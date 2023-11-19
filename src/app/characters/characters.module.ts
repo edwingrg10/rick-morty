@@ -7,6 +7,7 @@ import { CharacterService } from './services/character.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutComponent } from '../shared/componentes/layout/layout.component';
 import { HomeComponent } from '../shared/componentes/home/home.component';
+import { FilterComponent } from '../shared/componentes/filter/filter.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { HomeComponent } from '../shared/componentes/home/home.component';
   declarations: [
     CharactersComponent,
     LayoutComponent,
-    HomeComponent
+    HomeComponent,
+    FilterComponent
   ],
   providers: [
     CharacterService

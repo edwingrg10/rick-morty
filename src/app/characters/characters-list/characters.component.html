@@ -14,7 +14,7 @@
         <form [formGroup]="filterForm" style="display: flex; flex-direction: column;">
           <button mat-menu-item disabled>Filtrar personajes</button>
           <mat-checkbox *ngFor="let option of filterOptions; let i = index" color="primary"
-            [formControlName]="option.key" (click)="getFilterOptions()" [attr.data-cy]="'opcion-' + option.label">
+            [formControlName]="option.key" (click)="getFilterOptions($event)" [attr.data-cy]="'opcion-' + option.label">
             {{ option.label }}
           </mat-checkbox>
         </form>

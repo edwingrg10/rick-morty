@@ -3,6 +3,7 @@ import { CharacterService } from '../services/character.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { DetailCharacterComponent } from '../characters-detail/detail-character.component';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-characters',
@@ -62,7 +63,8 @@ export class CharactersComponent implements OnInit {
     );
   }
 
-  getFilterOptions() {
+  getFilterOptions(event: Event) {
+    event.stopPropagation();
     this.filterOptionsSelected = this.filterOptions
       .filter(option => this.filterForm.get(option.key)?.value)
       .map(option => option);

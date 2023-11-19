@@ -45,6 +45,7 @@ table {
         border-radius: 40px !important;
     }
     h4.bold {
+        margin-top: 5px;
         font-weight: bold;
     }
     button {
@@ -143,7 +144,7 @@ mat-sidenav-container {
 
 @media (max-width: 600px) {
     mat-sidenav-content {
-        margin: 4rem auto;
+        margin: 1rem auto;
     }
 
     mat-sidenav {

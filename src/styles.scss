@@ -6,5 +6,9 @@ body {
 }
 body {
     margin: 0;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
+}
+
+::ng-deep .mat-mdc-dialog-container, .mat-mdc-dialog-container .mdc-dialog__container, .mat-mdc-dialog-container .mdc-dialog__surface { 
+    border-radius: 25px 25px 25px 25px!important; 
 }

@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LayoutComponent } from '../shared/componentes/layout/layout.component';
 import { HomeComponent } from '../shared/componentes/home/home.component';
 import { FilterComponent } from '../shared/componentes/filter/filter.component';
+import { DetailCharacterComponent } from './characters-detail/detail-character.component';
 
 @NgModule({
   imports: [
@@ -20,10 +21,14 @@ import { FilterComponent } from '../shared/componentes/filter/filter.component';
     CharactersComponent,
     LayoutComponent,
     HomeComponent,
-    FilterComponent
+    FilterComponent,
+    DetailCharacterComponent
   ],
   providers: [
     CharacterService
+  ],
+  bootstrap: [
+    DetailCharacterComponent
   ]
 })
 export class CharactersModule { }

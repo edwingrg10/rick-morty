@@ -24,6 +24,7 @@
   <div style="margin-top: 10px;" *ngIf="filterOptionsSelected.length>0">
     <app-filter [filterOptions]="filterOptionsSelected" (getCharactersFiltered)="getCharactersFiltered($event)"></app-filter>
   </div>
+  <p style="display: flex; flex-direction: column; align-items: center;" *ngIf="characters.length==0">No se encontraron resultados</p>
   <cdk-virtual-scroll-viewport [ngClass]="filterOptionsSelected.length>0 ? 'filtered' : 'unfiltered'" id="style-1" itemSize="50" minBufferPx="540" maxBufferPx="540" style="margin-top: 10px;">
     <div class="card-data">
       <mat-card class="card" *cdkVirtualFor="let character of characters">
@@ -40,12 +41,12 @@
         </div>
         <div style="display: flex; flex-direction: column; padding: 0 16px 0 16px;height: 90px;width: 100%">
           <div style="display: flex; flex-direction: row; align-items: flex-start;">
-            <span style="font-weight: 600;margin-right: 10px;">Fecha de creación:</span>
+            <span style="font-weight: 600;margin-right: 10px;">Fecha creación:</span>
             <p
               style="font-size: 14px;font-weight: 400;line-height: 17px;letter-spacing: 0em;text-align: left;color: #535353;">
               {{character.created | date :
               'dd-MM-yyyy'}}</p>
-          </div>
+          </div> 
           <div style="display: flex; flex-direction: row; align-items: flex-start;">
             <span style="font-weight: 600;margin-right: 10px;">Género:</span>
             <p

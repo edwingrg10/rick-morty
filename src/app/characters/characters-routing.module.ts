@@ -9,10 +9,10 @@ const routes: Routes = [
         path: '', component: LayoutComponent, children: [
             {
                 path: 'list', component: CharactersComponent
-            },
+            }/* ,
             {
                 path: 'detail-character/:id', component: DetailCharacterComponent
-            }
+            } */
         ]
     }
 ];

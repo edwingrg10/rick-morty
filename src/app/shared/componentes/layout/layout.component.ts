@@ -15,11 +15,9 @@ export class LayoutComponent implements OnInit {
     },
     {
       displayName: 'Maestras',
-      iconName: 'home',
       children: [
         {
           displayName: 'Personajes',
-          iconName: 'card_travel',
           route: '/characters/list'
         }
       ]

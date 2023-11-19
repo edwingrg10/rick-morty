@@ -1,15 +1,15 @@
-<form [formGroup]="form" class="container">
+<form [formGroup]="form" class="container" *ngIf="!isLoading">
   <div *ngFor="let field of filterOptions">
     <ng-container [ngSwitch]="field.type">
       <div *ngSwitchCase="'text'" class="item">
         <label class="question-label">{{ field.label }}</label>
-        <mat-form-field appearance="outline">
+        <mat-form-field>
           <input matInput [formControlName]="field.key" placeholder="{{ field.label }}">
         </mat-form-field>
       </div>
       <div *ngSwitchCase="'select'" class="item">
         <label class="question-label">{{ field.label }}</label>
-        <mat-form-field appearance="outline">
+        <mat-form-field>
           <mat-select [formControlName]="field.key" placeholder="Seleccionar...">
             <mat-option *ngFor="let opcion of field.options" [value]="opcion.value">{{ opcion.label }}</mat-option>
           </mat-select>
@@ -19,5 +19,5 @@
   </div>
   <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="searchCharacters()" style="margin-right: 10px;">Filtrar</button>
   <button mat-raised-button color="primary" *ngIf="filtered" (click)="cleanFilters()">Limpiar filtros</button>
-
 </form>
+<mat-spinner *ngIf="isLoading"></mat-spinner>

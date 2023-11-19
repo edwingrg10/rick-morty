@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CharacterService } from '../../../characters/services/character.service';
 
@@ -40,6 +40,8 @@ export class FilterComponent implements OnInit {
       this.filtered = true;
       this.isLoading = false;
     }, error => {
+      this.filtered = true;
+      this.getCharactersFiltered.emit([]);
       this.isLoading = false;
     });
   }
@@ -50,6 +52,7 @@ export class FilterComponent implements OnInit {
       this.getCharactersFiltered.emit(data.results);
       this.filtered = false;
       this.isLoading = false;
+      this.form.reset();
     }, error => {
       this.isLoading = false;
     });

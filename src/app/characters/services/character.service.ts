@@ -15,6 +15,10 @@ export class CharacterService {
     return this.http.get<any>(this.apiUrl + '/character');
   }
 
+  getCharacterById(id: number) {
+    return this.http.get<any>(this.apiUrl + '/character/' + id);
+  }
+
   getCharactersFilter(params: string) {
     return this.http.get<any>(this.apiUrl + '/character/?' + params);
   }

@@ -1,3 +1,57 @@
-<p>
-  detail-character works!
-</p>
+<h3 mat-dialog-title style="display: flex; flex-direction: column; align-items: center;height: 40px;margin-top: 15px;">{{character.name}}
+</h3>
+<mat-dialog-content style="overflow-y: hidden;background-color: #eeeeee;">
+  <div style="display: flex; flex-direction: column; width: 100%;margin-top: 10px;">
+    <div style="display: flex; flex-direction: column; align-items: center;margin-bottom: 10px;">
+      <img style="width: 200px;height: 200px;color: #B3B3B3;margin-right: 10px;border-radius: 20px;"
+        [src]="character.image">
+    </div>
+    <div style="display: flex; flex-direction: row; align-items: flex-start;">
+      <span style="font-weight: 600;margin-right: 10px;">Fecha de creación:</span>
+      <p
+        style="font-size: 14px;font-weight: 400;line-height: 17px;letter-spacing: 0em;text-align: left;color: #535353;margin-top: 5px;">
+        {{character.created | date :
+        'dd-MM-yyyy'}}</p>
+    </div>
+    <div style="display: flex; flex-direction: row; align-items: flex-start;">
+      <span style="font-weight: 600;margin-right: 10px;">Género:</span>
+      <p
+        style="font-size: 14px;font-weight: 400;line-height: 17px;letter-spacing: 0em;text-align: left;color: #535353;margin-top: 5px;">
+        {{character.gender == 'Male' ? 'Masculino' : character.gender == 'Female' ? 'Femenino' : 'No específica'
+        }}</p>
+    </div>
+    <div style="display: flex; flex-direction: row; align-items: flex-start;">
+      <span style="font-weight: 600;margin-right: 10px;">Estado:</span>
+      <p
+        style="font-size: 14px;font-weight: 400;line-height: 17px;letter-spacing: 0em;text-align: left;color: #535353;margin-top: 5px;">
+        {{character.status == 'Alive' ? 'Vivo' : character.gender == 'Dead' ? 'Muerto' : 'No específica' }}</p>
+    </div>
+    <div style="display: flex; flex-direction: row; align-items: flex-start;">
+      <span style="font-weight: 600;margin-right: 10px;">Ubicación:</span>
+      <p
+        style="font-size: 14px;font-weight: 400;line-height: 17px;letter-spacing: 0em;text-align: left;color: #535353;margin-top: 5px;">
+        {{character.location.name }}</p>
+    </div>
+    <div style="display: flex; flex-direction: row; align-items: flex-start;">
+      <span style="font-weight: 600;margin-right: 10px;">Origen:</span>
+      <p
+        style="font-size: 14px;font-weight: 400;line-height: 17px;letter-spacing: 0em;text-align: left;color: #535353;margin-top: 5px;">
+        {{character.origin.name }}</p>
+    </div>
+    <div style="display: flex; flex-direction: row; align-items: flex-start;">
+      <span style="font-weight: 600;margin-right: 10px;">Especie:</span>
+      <p
+        style="font-size: 14px;font-weight: 400;line-height: 17px;letter-spacing: 0em;text-align: left;color: #535353;margin-top: 5px;">
+        {{character.species }}</p>
+    </div>
+    <div style="display: flex; flex-direction: row; align-items: flex-start;" *ngIf="character.type">
+      <span style="font-weight: 600;margin-right: 10px;">Tipo:</span>
+      <p
+        style="font-size: 14px;font-weight: 400;line-height: 17px;letter-spacing: 0em;text-align: left;color: #535353;margin-top: 5px;">
+        {{character.type }}</p>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end" style="background-color: #eeeeee;">
+  <button mat-button mat-dialog-close>Cerrar</button>
+</mat-dialog-actions>

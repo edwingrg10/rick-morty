@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CharacterService } from '../services/character.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { DetailCharacterComponent } from '../characters-detail/detail-character.component';
 
 @Component({
   selector: 'app-characters',
@@ -9,6 +11,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class CharactersComponent implements OnInit {
   characters: any[] = [];
+  filteredCharacters: any[] = this.characters;
   isLoading: boolean = false;
   filterForm: FormGroup = new FormGroup({});
   filterOptions = [
@@ -21,7 +24,8 @@ export class CharactersComponent implements OnInit {
   filterOptionsSelected: any = []
   constructor(
     private characterService: CharacterService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -41,6 +45,7 @@ export class CharactersComponent implements OnInit {
     this.isLoading = true;
     this.characterService.getCharacters().subscribe((data) => {
       this.characters = data.results;
+      this.filteredCharacters = data.results;
       this.isLoading = false;
     }, error => {
       this.isLoading = false;
@@ -48,7 +53,13 @@ export class CharactersComponent implements OnInit {
   }
 
   applyFilter(filterValue: any) {
-    filterValue = filterValue.trim().toLowerCase();
+    filterValue = filterValue.target.value.trim().toLowerCase();
+    this.characters = this.filteredCharacters.filter(x => x.name.toLowerCase().includes(filterValue)
+      || x.gender.toLowerCase().includes(filterValue)
+      || x.species.toLowerCase().includes(filterValue)
+      || x.status.toLowerCase().includes(filterValue)
+      || x.type.toLowerCase().includes(filterValue)
+    );
   }
 
   getFilterOptions() {
@@ -59,10 +70,18 @@ export class CharactersComponent implements OnInit {
 
   getCharactersFiltered(characters: any) {
     this.characters = characters;
+    this.filteredCharacters = characters;
   }
 
   seeDetail(character: any) {
-
+    this.characterService.getCharacterById(character.id).subscribe(result => {
+      this.dialog.open(DetailCharacterComponent, {
+        data: result,
+        width: '700px',
+        height: '500px' 
+      });
+    }, error => {
+    });
   }
 
 }
